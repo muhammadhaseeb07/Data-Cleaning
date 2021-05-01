@@ -31,13 +31,14 @@ if __name__ == '__main__':
     desired_output = []
     splitted_string = ['Hello', 'hello', 'Hi', 'hi', 'Dear', 'Good Morning', 'Good Afternoon', 'Good Evening']
     for row in file_data.itertuples():
-        splitted_text = re.split('Hello|hello|Hi|Dear|dear|Good\s*(Morning|Afternoon|Evening)', row[1])
+        splitted_text = re.split('Hello|hello|Hi|Dear|dear|Good\s*(Morning|Afternoon|Evening)', row[1], re.IGNORECASE)
         for text in splitted_text:
-            data['Text for Training'].append(text)
-            data['Category'].append(row[2])
-            data['Sub Category'].append(row[3])
-            data['Case Subject'].append(row[4])
-            data['Language'].append(row[5])
+            if text:
+                data['Text for Training'].append(text)
+                data['Category'].append(row[2])
+                data['Sub Category'].append(row[3])
+                data['Case Subject'].append(row[4])
+                data['Language'].append(row[5])
 
 
     # Desired Output File
